@@ -24,16 +24,16 @@ public class PublishNotificationService {
 
     private static final Logger log = LoggerFactory.getLogger(PublishNotificationService.class);
 
-    public void publish(final Object notification, Map<String, MessageAttributeValue> messageAttributes) {
-        log.info("Publicando notificação para o topico:{}");
+    public void publish(final Object notification) {
+        log.info("Publicando notificação para o topico:{}", topic);
         snsClient.publish(sns -> sns
                 .message(convertNotification(notification))
-                .topicArn("")
-                .messageAttributes(messageAttributes));
+                .topicArn(topic)
+                .build());
     }
 
     private String convertNotification(Object notification) {
-        final ObjectMapper mapper = new ObjectMapper();
+        final var mapper = new ObjectMapper();
         try {
             return mapper.writeValueAsString(notification);
         } catch (JsonProcessingException e) {

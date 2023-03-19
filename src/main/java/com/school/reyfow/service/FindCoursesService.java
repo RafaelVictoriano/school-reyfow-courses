@@ -1,7 +1,6 @@
 package com.school.reyfow.service;
 
-import com.school.reyfow.mapper.dto.CourseDTO;
-import com.school.reyfow.mapper.dto.CourseRequestDTO;
+import com.school.reyfow.dto.CourseDTO;
 import com.school.reyfow.mapper.CourseMapper;
 import com.school.reyfow.repository.CourseRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -9,10 +8,15 @@ import lombok.extern.slf4j.Slf4j;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static java.util.function.Predicate.not;
 
 @Slf4j
 @ApplicationScoped
-public class CourseService {
+public class FindCoursesService {
 
     private static final String COURSE = "COURSE";
     @Inject
@@ -21,16 +25,20 @@ public class CourseService {
     @Inject
     CourseMapper mapper;
 
-    public CourseDTO findById(String id) {
+    public CourseDTO byId(String id) {
         return this.courseRepository.findById(id, COURSE)
                 .map(mapper::courseToCourseDTO)
                 .orElseThrow(() -> new NotFoundException("Course not found"));
     }
 
-    public String create(CourseRequestDTO courseRequestDTO) {
-        final var course = mapper.courseDTOToCourse(courseRequestDTO);
-        this.courseRepository.save(course);
-        return course.getId();
+    public Optional<List<CourseDTO>> all() {
+        return Optional.of(courseRepository.findAll(COURSE)
+                .filter(not(List::isEmpty))
+                .stream()
+                .flatMap(List::stream)
+                .map(mapper::courseToCourseDTO)
+                .collect(Collectors.toList()));
     }
+
 
 }

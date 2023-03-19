@@ -1,4 +1,4 @@
-package com.school.reyfow.mapper.dto;
+package com.school.reyfow.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +7,7 @@ import lombok.Setter;
 public class RegisterStudentDTO {
     private String studentId;
     private String studentName;
+    private String email;
     private String courseId;
 }
 
