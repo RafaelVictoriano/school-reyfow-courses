@@ -6,6 +6,7 @@ import com.school.reyfow.dto.RegisterStudentDTO;
 import com.school.reyfow.service.CreateCourseService;
 import com.school.reyfow.service.FindCoursesService;
 import com.school.reyfow.service.RegisterStudentService;
+import io.quarkus.security.Authenticated;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.security.RolesAllowed;
@@ -22,6 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 @Path("course")
+@Authenticated
 public class CourseController {
 
     @Inject

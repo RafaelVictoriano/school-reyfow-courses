@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.school.reyfow</groupId>
     <artifactId>school-reyfow-courses</artifactId>
-    <version>1.0-RC</version>
+    <version>5.0-RC</version>
     <properties>
         <compiler-plugin.version>3.10.1</compiler-plugin.version>
         <maven.compiler.release>11</maven.compiler.release>
@@ -42,6 +42,10 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-health</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-rest-client-jackson</artifactId>
         </dependency>
         <dependency>
@@ -56,7 +60,7 @@
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-dynamodb</artifactId>
-            <version>1.12.376</version>
+            <version>1.12.430</version>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.amazonservices</groupId>
