@@ -25,7 +25,6 @@ public interface CourseMapper {
 
 
     @Mappings({
-            @Mapping(target = "eventCode", constant = "20"),
             @Mapping(target = "courseName", source = "name"),
     })
     CourseEventDTO courseToEvent(Course course);

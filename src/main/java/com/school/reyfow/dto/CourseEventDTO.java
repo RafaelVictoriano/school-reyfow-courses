@@ -11,7 +11,5 @@ public class CourseEventDTO {
 
     private String studentName;
     private String courseName;
-
     private String email;
-    private Integer eventCode;
 }

@@ -24,11 +24,12 @@ public class PublishNotificationService {
 
     private static final Logger log = LoggerFactory.getLogger(PublishNotificationService.class);
 
-    public void publish(final Object notification) {
+    public void publish(final Object notification, final Map<String, MessageAttributeValue> headers) {
         log.info("Publicando notificação para o topico:{}", topic);
         snsClient.publish(sns -> sns
                 .message(convertNotification(notification))
                 .topicArn(topic)
+                .messageAttributes(headers)
                 .build());
     }
 
